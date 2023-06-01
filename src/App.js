@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar";
+import Spinner from "./components/Spinner";
+import Toast from "./components/Toast";
+import Container from "./containers/Container";
+// import ShareModal from "./components/ShareModal";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-slate-100 min-h-screen pb-10">
+      <Navbar />
+
+      {/* <div className="m-20"> */}
+      {/* <ShareModal /> */}
+      {/* <Toast /> */}
+      {/* <Spinner /> */}
+      {/* </div> */}
+
+      <Container />
     </div>
   );
 }
