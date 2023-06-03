@@ -1,5 +1,7 @@
+// Not Found page
+
 import React from "react";
-import { Route, redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
   const navigate = useNavigate();

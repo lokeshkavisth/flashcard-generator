@@ -1,17 +1,9 @@
+// Input component
+
 import { ErrorMessage, Field } from "formik";
 import React from "react";
 
-const FieldInput = ({
-  label,
-  id,
-  name,
-  htmlFor,
-  placeholder,
-  values,
-  handleChange,
-  handleBlur,
-  as,
-}) => {
+const FieldInput = ({ label, id, name, htmlFor, placeholder }) => {
   return (
     <div className="flex flex-col gap-2 md:w-80 w-full">
       <label htmlFor={htmlFor} className="font-semibold text-gray-500">
@@ -23,9 +15,6 @@ const FieldInput = ({
           id={id}
           name={name}
           placeholder={placeholder}
-          // values={values}
-          // handleBlur={handleBlur}
-          // handleChange={handleChange}
           className="p-2 text-lg border-2 rounded-md"
           required
         />

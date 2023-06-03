@@ -1,3 +1,5 @@
+//  Wrapper for all our components
+
 import React from "react";
 import SubNav from "../components/SubNav";
 import Routes from "../routes/routes";

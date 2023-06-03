@@ -1,3 +1,5 @@
+// main flashcard Top Navbar
+
 import React from "react";
 import Logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
@@ -6,7 +8,7 @@ const Navbar = () => {
   return (
     <header>
       <nav
-        className="p-2 py-5 
+        className="p-2 
         md:px-10
         lg:px-15
         xl:px-20

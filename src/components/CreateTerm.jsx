@@ -3,30 +3,20 @@ import { AiFillFileImage } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
 import { TbTrashX } from "react-icons/tb";
 import Button from "../components/Button";
-// import { useDispatch, useSelector } from "react-redux";
-// import { addNewTerm } from "../redux/actions/actions";
-// import { ErrorMessage, Field } from "formik";
 import FieldInput from "../components/FieldInput";
 import { FieldArray } from "formik";
 
-const CreateTerm = ({
-  selectedImage,
-  setSelectedImage,
-  values,
-  handleChange,
-  handleBlur,
-  setFieldValue,
-}) => {
+const CreateTerm = ({ values, setFieldValue }) => {
   const [num, setNum] = useState(0);
+  const [activeBtn, setActiveBtn] = useState(true);
+  const [deleteIndex, setDeleteIndex] = useState(null);
 
   return (
-    <div>
+    <div className={!values.groups.group && "opacity-50 pointer-events-none"}>
       <FieldArray
         name="terms"
         render={(formHelpers) => (
           <ul className="bg-white md:p-10 rounded-md sm:p-5 p-5 shadow-md flex flex-col gap-8">
-            {/* {newTerm} */}
-
             {values.terms.map((item, index) => (
               <li
                 key={index}
@@ -36,32 +26,27 @@ const CreateTerm = ({
                   {index + 1}
                 </span>
                 <div className="flex items-end flex-wrap gap-5 md:flex-row sm:flex-col flex-col w-full">
+                  {/* Enter term input */}
                   <FieldInput
                     name={`terms.${index}.term`}
                     htmlFor={`Term${item}`}
                     label={"Enter Term"}
                     id={`Term-${item}`}
                     placeholder={"What is ISP?"}
-                    // values={values}
-                    // handleBlur={handleBlur}
-                    // handleChange={handleChange}
                   />
 
+                  {/* Enter Defination input */}
                   <FieldInput
                     name={`terms.${index}.defination`}
                     htmlFor={`Defination${item}`}
                     label={"Enter Defination"}
                     id={`Defination-${item}`}
                     placeholder={"An ISP (internet service provider) is..."}
-                    // values={values}
-                    // handleBlur={handleBlur}
-                    // handleChange={handleChange}
                   />
-
-                  {/* ----------------- */}
 
                   {!item.image && (
                     <div>
+                      {/* button for uploading term image */}
                       <Button
                         type={"button"}
                         btnclass={
@@ -78,22 +63,25 @@ const CreateTerm = ({
                               <input
                                 type="file"
                                 id={`cardImage-${item}`}
-                                name={`terms.${index}.image`}
                                 hidden
-                                // value=""
-                                // innerRef={fileRef}
                                 accept="image/*"
+                                // taking the input data and extracting the image link from file object using FileReader
                                 onChange={(e) => {
-                                  console.log("index___", num);
                                   const file = e.target.files[0];
                                   const reader = new FileReader();
                                   reader.readAsDataURL(file);
                                   reader.onload = () => {
                                     setFieldValue(
-                                      `terms.${num}.image`,
+                                      deleteIndex == null
+                                        ? `terms.${num}.image`
+                                        : `terms.${deleteIndex}.image`,
+
                                       reader.result
                                     );
+                                    setDeleteIndex(null);
+                                    setActiveBtn(false);
                                   };
+                                  setDeleteIndex(null);
                                 }}
                               />
                             </label>
@@ -113,18 +101,26 @@ const CreateTerm = ({
                         />
                       </div>
 
-                      <div className="flex flex-col gap-5">
-                        <Button
-                          type={"button"}
-                          text={<TbTrashX className="text-3xl text-red-500" />}
-                          fn={() => setFieldValue(`terms.${index}.image`, "")}
-                        />
-                        <button type="button">
-                          <label htmlFor={`cardImage-${item}`}>
-                            <BiEdit className="text-blue-700 text-3xl" />
-                          </label>
-                        </button>
-                      </div>
+                      {
+                        <div className="flex flex-col gap-5">
+                          <Button
+                            type={"button"}
+                            text={
+                              <TbTrashX className="text-3xl text-red-500" />
+                            }
+                            fn={() => {
+                              setFieldValue(`terms.${index}.image`, "");
+                              setActiveBtn(true);
+                              setDeleteIndex(index);
+                            }}
+                          />
+                          <button type="button">
+                            <label htmlFor={`cardImage-${item}`}>
+                              <BiEdit className="text-blue-700 text-3xl" />
+                            </label>
+                          </button>
+                        </div>
+                      }
                     </>
                   )}
 
@@ -146,9 +142,11 @@ const CreateTerm = ({
             <li className="text-center md:text-left">
               <Button
                 type="button"
+                disabled={activeBtn}
                 fn={() => {
                   formHelpers.push("");
                   setNum((prev) => prev + 1);
+                  setActiveBtn(true);
                 }}
                 btnclass={"font-semibold text-blue-700 mt-5"}
                 text={"+ Add more"}

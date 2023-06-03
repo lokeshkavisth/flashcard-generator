@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+// page for creating flashcards
+
+import React, { useState } from "react";
 import CreateGroup from "../components/CreateGroup";
 import CreateTerm from "../components/CreateTerm";
-import { Formik, Form, useFormik } from "formik";
+import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { createFlashcard } from "../redux/actions/actions";
 import Button from "../components/Button";
@@ -10,10 +12,10 @@ import Toast from "../components/Toast";
 
 const CreateFlashcard = () => {
   const dispatch = useDispatch();
-  // const [selectedImage, setSelectedImage] = useState([]);
   const [toast, setToast] = useState(false);
-  const flashCard = useSelector((state) => state.flashCardData);
-  console.log("flash", flashCard);
+  const { flashcards } = useSelector((state) => state.flashCardData);
+  if (flashcards.length > 0)
+    localStorage.setItem("flashcards", JSON.stringify(flashcards));
 
   return (
     <Formik
@@ -32,11 +34,11 @@ const CreateFlashcard = () => {
           },
         ],
       }}
+      // validating and dispatching the form data to redux state on onSubmit
       validationSchema={flashcardSchema}
       onSubmit={(values, action) => {
         values.id = Date.now();
         action.resetForm();
-        // values.image = selectedImage;
         dispatch(createFlashcard(values));
 
         setToast(true);
@@ -47,10 +49,10 @@ const CreateFlashcard = () => {
       }}
       validateOnMount
     >
-      {({ values, isValid, dirty, errors, setFieldValue, isSubmitting }) => (
+      {({ values, isValid, setFieldValue, isSubmitting }) => (
         <Form>
           <section className="mb-10 flex flex-col gap-10">
-            {/* <Toast /> */}
+            {/* toast component for let user know that their flashcard is created */}
             {toast && (
               <Toast
                 fn={() => setToast(false)}
@@ -58,17 +60,17 @@ const CreateFlashcard = () => {
               />
             )}
 
-            {/* Create group  */}
+            {/* Create term component */}
             <CreateGroup values={values} setFieldValue={setFieldValue} />
 
-            {/* Create Term  */}
+            {/* Create term component */}
             <CreateTerm setFieldValue={setFieldValue} values={values} />
           </section>
 
           <div className="mx-auto text-center">
+            {/* button for submiting the flashcard */}
             <Button
               disabled={isSubmitting}
-              // disabled={!(isValid && dirty)}
               type="submit"
               btnclass={`font-semibold rounded-md text-white text-xl px-14 py-4 ${
                 !isValid ? "bg-red-200" : "bg-red-600"

@@ -1,13 +1,9 @@
 import React from "react";
-import Button from "./Button";
-import { useSelector } from "react-redux";
-import { GrNext, GrPrevious } from "react-icons/gr";
-import dummy from "../assets/dummy_image.jpg";
 
-const Slider = ({ term, defination, image }) => {
-  //   const { flashCard } = useSelector((state) => state.flashCardData);
+const Slider = ({ term, defination, image, termRef }) => {
+  //   const { flashcards } = useSelector((state) => state.flashCardData);
   return (
-    <div className="space-y-10 w-full mt-4 xl:mt-0">
+    <div ref={termRef} className="space-y-10 w-full mt-4 xl:mt-0">
       <div className="bg-white p-5 space-y-4 sm:space-y-0 shadow-sm rounded-md sm:min-h-[300px]">
         {/* {flashCard[0].terms.image && (
           <div className="w-52 aspect-video">

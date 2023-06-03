@@ -1,21 +1,33 @@
+// Flashcard detail page that shows flashcard data
+
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BsArrowLeft, BsDownload, BsPrinter } from "react-icons/bs";
 import { CiShare2 } from "react-icons/ci";
 import Button from "../components/Button";
-import dummyImage from "../assets/dummy_image.jpg";
-import { useSelector } from "react-redux";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import ShareModal from "../components/ShareModal";
 import Slider from "../components/Slider";
+import PrintTemplate from "../components/PrintTemplate";
+import { useSelector } from "react-redux";
+import { useReactToPrint } from "react-to-print";
 
 const FlashcardDetails = () => {
   const params = useParams();
   const { id } = params;
-  const { flashCard } = useSelector((state) => state.flashCardData);
-  console.log("cardData", flashCard);
   const [toggleModal, setToggleModal] = useState("hidden");
+  const { flashcards } = useSelector((state) => state.flashCardData);
 
+  // download as pdf
+  const pdfRef = useRef();
+  const downloadPDF = useReactToPrint({
+    content: () => pdfRef.current,
+  });
+
+  // download single term
+  const termRef = useRef();
+
+  // share, download and print button data
   const SideBtnData = [
     {
       btn_id: 1,
@@ -31,20 +43,16 @@ const FlashcardDetails = () => {
       btn_title: "download as PDF",
       btn_icon: <BsDownload className="text-blue-600" />,
       btn_text: "Download",
-      // btn_fn: () => {},
+      btn_fn: downloadPDF,
     },
     {
       btn_id: 3,
       btn_title: "print",
       btn_icon: <BsPrinter className="text-blue-600" />,
       btn_text: "Print",
-      btn_fn: () => {
-        let printContents = document.getElementById("myId").innerHTML;
-        let originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
-        window.print();
-        document.body.innerHTML = originalContents;
-      },
+      btn_fn: useReactToPrint({
+        content: () => termRef.current,
+      }),
     },
   ];
 
@@ -67,17 +75,26 @@ const FlashcardDetails = () => {
     buttonRef.current.click();
   }, []);
 
+  const displayData = (newInd) => {
+    console.log("Ne ind", newInd);
+    flashcards.map((item) => {
+      item.terms.map(({ term, defination, image }, index, arr) => {
+        if (newInd == index) {
+          setActive(newInd);
+          const totalTerms = arr.length;
+          fetchTermData(term, defination, image, index, totalTerms);
+        }
+      });
+    });
+  };
+  console.log("active", active);
+
   return (
     <div>
       {/* share modal  */}
 
-      <ShareModal
-        show={toggleModal}
-        hide={setToggleModal}
-        // shareDesc={card.groups.group}
-        // linkMetaDesc={""}
-        // shareTitle={card.groups.groupDesc}
-      />
+      <ShareModal show={toggleModal} hide={setToggleModal} />
+      <PrintTemplate pdfRef={pdfRef} />
 
       {/* title and description */}
       <div className="flex items-start gap-5 mb-10">
@@ -89,7 +106,7 @@ const FlashcardDetails = () => {
           </Link>
         </div>
         <div>
-          {flashCard.map((card) => {
+          {flashcards.map((card) => {
             if (card.id == id) {
               return (
                 <div key={card.id}>
@@ -100,6 +117,7 @@ const FlashcardDetails = () => {
                 </div>
               );
             }
+            return null;
           })}
         </div>
       </div>
@@ -113,7 +131,7 @@ const FlashcardDetails = () => {
             Flashcards
           </h5>
           <ul className="flex gap-3 mt-4 font-medium text-gray-600 xl:overflow-y-scroll max-h-80 pb-5 overflow-x-scroll xl:flex-col xl:w-52 xl:overflow-x-auto">
-            {flashCard.map((item) => {
+            {flashcards.map((item) => {
               if (item.id == id) {
                 return item.terms.map(
                   ({ term, defination, image }, index, arr) => (
@@ -143,27 +161,40 @@ const FlashcardDetails = () => {
                   )
                 );
               }
+              return null;
             })}
           </ul>
         </div>
-        {/* slider */}
+        {/* slider or middle container that show flashcard defination */}
         <div className="space-y-10 w-full mb-10" id="myId">
           <Slider
             key={id}
             defination={state.defination}
             image={state.image}
             term={state.term}
+            termRef={termRef}
           />
 
+          {/*button's to change the term defination */}
           <div className="flex items-center gap-8 justify-center">
-            <Button type={"button"} text={<GrPrevious />} />
+            <Button
+              type={"button"}
+              text={<GrPrevious />}
+              fn={() => displayData(active - 1)}
+              btnclass={"p-2 rounded-md active:bg-blue-100 hover:bg-gray-200"}
+            />
             <span>
               {state.index + 1}/{state.totalTerms}
             </span>
-            <Button type={"button"} text={<GrNext />} />
+            <Button
+              type={"button"}
+              text={<GrNext />}
+              fn={() => displayData(active + 1)}
+              btnclass={"p-2 rounded-md active:bg-blue-100 hover:bg-gray-200"}
+            />
           </div>
         </div>
-        {/* download and share */}
+        {/* download, print and share buttons */}
         <div>
           <ul className="flex gap-3 overflow-x-scroll xl:flex-col xl:overflow-x-auto">
             {SideBtnData.map(

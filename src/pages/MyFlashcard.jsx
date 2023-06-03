@@ -1,15 +1,17 @@
+// myflashcard page that shows all flashcards
+
 import React from "react";
 import Card from "../components/Card";
-import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const MyFlashcard = () => {
-  const { flashCard } = useSelector((state) => state.flashCardData);
-  // console.log(flashCard);
-
+  const { flashcards } = useSelector((state) => state.flashCardData);
   return (
     <div className="flex gap-3 flex-wrap mx-auto ">
-      {flashCard.length <= 0 ? (
+      {/* if flashcard state data is not empty then shows cards else shows an message */}
+
+      {flashcards.length == 0 ? (
         <div className="flex flex-col items-center justify-center gap-4 text-center mx-auto">
           <p className="text-black text-2xl">You don't have any flashcards</p>
           <NavLink
@@ -22,7 +24,7 @@ const MyFlashcard = () => {
           </NavLink>
         </div>
       ) : (
-        flashCard.map(({ id, groups, terms }) => (
+        flashcards.map(({ id, groups, terms }) => (
           <Card
             key={id}
             id={id}

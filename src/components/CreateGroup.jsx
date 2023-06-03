@@ -1,33 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import FieldInput from "./FieldInput";
 import { Field } from "formik";
 import { AiFillFileImage } from "react-icons/ai";
 import Button from "./Button";
 
-const CreateGroup = ({
-  values,
-  handleChange,
-  handleBlur,
-  setVisibility,
-  selectedImage,
-  setSelectedImage,
-  setFieldValue,
-}) => {
-  // const [preview, setPriview] = useState(null);
-  // const reader = new FileReader();
-  // reader.readAsDataURL(preview);
-  // reader.onload = () => {
-  //   setPriview(reader.result);
-  // };
-
-  // const img = preview;
-  // console.log(img);
-
+const CreateGroup = ({ values, setFieldValue }) => {
   return (
     <div className="bg-white shadow-md md:p-10 p-5 rounded-md sm:p-5">
       <div
         className={`flex items-end gap-5 mb-5 sm:flex-row flex-col flex-wrap`}
       >
+        {/* enter group input */}
         <FieldInput
           name={`groups.group`}
           id={"group"}
@@ -37,6 +20,7 @@ const CreateGroup = ({
         />
 
         <div>
+          {/* button for uploading Group image */}
           <Button
             type={"button"}
             btnclass={
@@ -64,7 +48,6 @@ const CreateGroup = ({
 
                       reader.onload = () => {
                         setFieldValue("groups.Profile", reader.result);
-                        // setPriview(reader.result);
                       };
                     }}
                   />
@@ -94,8 +77,8 @@ const CreateGroup = ({
         )}
       </div>
 
-      {/* description  */}
-      <div className="flex flex-col gap-2">
+      {/* Group description  */}
+      <div className="flex flex-col gap-2 relative">
         <label
           htmlFor="groupDescription"
           className="font-semibold text-gray-500"
@@ -106,8 +89,9 @@ const CreateGroup = ({
           as="textarea"
           name={`groups.groupDesc`}
           id="groupDescription"
-          placeholder="Description about your group"
-          className="p-2 text-lg border-2 rounded-md h-48 resize-none"
+          maxLength="200"
+          placeholder="Write your description here ( max length is 200 words )"
+          className="p-2 text-lg border-2 rounded-md h-36 resize-none"
         />
       </div>
     </div>

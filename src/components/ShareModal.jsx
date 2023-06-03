@@ -17,15 +17,13 @@ import { BiShareAlt } from "react-icons/bi";
 import { MdDone } from "react-icons/md";
 import Button from "./Button";
 import ShareOnSocial from "react-share-on-social";
-import dummy from "../assets/logo.png";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const ShareModal = ({ show, hide }) => {
+  const { flashcards } = useSelector((state) => state.flashCardData);
+
   const { id } = useParams();
-  console.log("modal id", id);
-  const { flashCard } = useSelector((state) => state.flashCardData);
-  // console.log(flashCard);
   const socialShare = [
     {
       id: 1,
@@ -100,7 +98,7 @@ const ShareModal = ({ show, hide }) => {
       className={`fixed inset-0 w-full h-screen place-items-center bg-gray-500 bg-opacity-60 backdrop-blur-[1px] ${show}`}
     >
       <div className="bg-white p-10 w-96 rounded-md shadow-md relative">
-        <div className="absolute top-3 right-0 text-2xl text-gray-500 hover:text-gray-600 transition-all">
+        <div className="absolute top-3 right-3 text-2xl text-gray-500 hover:text-gray-600 transition-all">
           <Button
             type={"button"}
             text={<VscClose />}
@@ -144,10 +142,11 @@ const ShareModal = ({ show, hide }) => {
               </li>
               <li>
                 {/* <button> */}
-                {flashCard.map((card) => {
+                {flashcards.map((card) => {
                   if (card.id == id) {
                     return (
                       <ShareOnSocial
+                        key={card.id}
                         textToShare={card.groups.groupDesc}
                         link={window.location.href}
                         linkTitle={card.groups.group}
@@ -161,9 +160,8 @@ const ShareModal = ({ show, hide }) => {
                       </ShareOnSocial>
                     );
                   }
+                  return null;
                 })}
-
-                {/* </button> */}
               </li>
             </ul>
           </div>

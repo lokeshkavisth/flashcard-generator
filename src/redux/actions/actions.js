@@ -1,13 +1,15 @@
-// export const addNewTerm = (newTerm) => {
-//   return {
-//     type: "ADD_NEW_TERM",
-//     payload: newTerm,
-//   };
-// };
-
-export const createFlashcard = (newTerm) => {
+// action for creating the flashcards
+export const createFlashcard = (formData) => {
   return {
     type: "CREATE_FLASHCARD",
-    payload: newTerm,
+    payload: formData,
+  };
+};
+
+// action for deleting the flashcards
+export const deleteFlashcard = (id) => {
+  return {
+    type: "DELETE_FLASHCARD",
+    payload: id,
   };
 };
