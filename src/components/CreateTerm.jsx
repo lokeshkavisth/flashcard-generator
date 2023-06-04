@@ -91,7 +91,7 @@ const CreateTerm = ({ values, setFieldValue }) => {
                     </div>
                   )}
                   {item.image && (
-                    <>
+                    <div className="flex items-center gap-5">
                       <div>
                         <img
                           className="w-20 aspect-square rounded-md"
@@ -114,14 +114,17 @@ const CreateTerm = ({ values, setFieldValue }) => {
                               setDeleteIndex(index);
                             }}
                           />
-                          <button type="button">
-                            <label htmlFor={`cardImage-${item}`}>
-                              <BiEdit className="text-blue-700 text-3xl" />
-                            </label>
-                          </button>
+                          <Button
+                            type={"button"}
+                            text={
+                              <label htmlFor={`cardImage-${item}`}>
+                                <BiEdit className="text-blue-700 text-3xl cursor-pointer" />
+                              </label>
+                            }
+                          />
                         </div>
                       }
-                    </>
+                    </div>
                   )}
 
                   {!index == 0 && (
