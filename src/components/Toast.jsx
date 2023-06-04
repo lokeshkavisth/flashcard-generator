@@ -1,5 +1,4 @@
 import React from "react";
-import { VscClose } from "react-icons/vsc";
 import { BsCheckCircle } from "react-icons/bs";
 
 const Toast = ({ fn, toastClass }) => {
@@ -24,7 +23,6 @@ const Toast = ({ fn, toastClass }) => {
           onClick={fn}
           className="font-semibold rounded-md px-4 py-1 text-blue-200 min-w-max hover:bg-blue-700 border-2 border-blue-300 transition-all hover:border-blue-700 active:animate-ping"
         >
-          {/* <VscClose /> */}
           Dismiss
         </button>
       </div>

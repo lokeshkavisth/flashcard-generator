@@ -76,14 +76,14 @@ const FlashcardDetails = () => {
   }, []);
 
   const displayData = (newInd) => {
-    console.log("Ne ind", newInd);
     flashcards.map((item) => {
-      item.terms.map(({ term, defination, image }, index, arr) => {
+      return item.terms.map(({ term, defination, image }, index, arr) => {
         if (newInd == index) {
           setActive(newInd);
           const totalTerms = arr.length;
           fetchTermData(term, defination, image, index, totalTerms);
         }
+        return null;
       });
     });
   };
