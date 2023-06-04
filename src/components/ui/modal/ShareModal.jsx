@@ -15,7 +15,7 @@ import {
 import { VscCopy, VscClose } from "react-icons/vsc";
 import { BiShareAlt } from "react-icons/bi";
 import { MdDone } from "react-icons/md";
-import Button from "./Button";
+import Button from "../button/Button";
 import ShareOnSocial from "react-share-on-social";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";

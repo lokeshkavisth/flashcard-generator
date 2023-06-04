@@ -4,11 +4,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { BsArrowLeft, BsDownload, BsPrinter } from "react-icons/bs";
 import { CiShare2 } from "react-icons/ci";
-import Button from "../components/Button";
+import Button from "../components/ui/button/Button";
 import { GrNext, GrPrevious } from "react-icons/gr";
-import ShareModal from "../components/ShareModal";
-import Slider from "../components/Slider";
-import PrintTemplate from "../components/PrintTemplate";
+import ShareModal from "../components/ui/modal/ShareModal";
+import Slider from "../components/ui/slider/Slider";
+import PrintTemplate from "../components/template/PrintTemplate";
 import { useSelector } from "react-redux";
 import { useReactToPrint } from "react-to-print";
 

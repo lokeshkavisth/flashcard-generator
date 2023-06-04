@@ -1,7 +1,7 @@
 // myflashcard page that shows all flashcards
 
 import React from "react";
-import Card from "../components/Card";
+import Card from "../components/ui/card/Card";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 

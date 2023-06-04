@@ -2,10 +2,10 @@ import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { TbTrashX } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import dummyImage from "../assets/dummy_image.jpg";
-import Button from "./Button";
+import dummyImage from "../../../assets/dummy_image.jpg";
+import Button from "../button/Button";
 import { useDispatch } from "react-redux";
-import { deleteFlashcard } from "../redux/actions/actions";
+import { deleteFlashcard } from "../../../redux/actions/actions";
 
 const Card = ({ group, groupDesc, terms, image, id }) => {
   const dispatch = useDispatch();

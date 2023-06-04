@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { AiFillFileImage } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
 import { TbTrashX } from "react-icons/tb";
-import Button from "../components/Button";
-import FieldInput from "../components/FieldInput";
+import Button from "./ui/button/Button";
+import FieldInput from "./ui/input/FieldInput";
 import { FieldArray } from "formik";
 
 const CreateTerm = ({ values, setFieldValue }) => {

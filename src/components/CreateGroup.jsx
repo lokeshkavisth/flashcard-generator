@@ -1,8 +1,8 @@
 import React from "react";
-import FieldInput from "./FieldInput";
+import FieldInput from "./ui/input/FieldInput";
 import { Field } from "formik";
 import { AiFillFileImage } from "react-icons/ai";
-import Button from "./Button";
+import Button from "./ui/button/Button";
 
 const CreateGroup = ({ values, setFieldValue }) => {
   return (

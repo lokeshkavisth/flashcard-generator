@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import PageRoutes from "./PageRoutes";
 import { Route, Routes } from "react-router-dom";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/ui/spinner/Spinner";
 
 const routes = () => {
   // mapping over the pageRoutes file and for each object in data, returning a route

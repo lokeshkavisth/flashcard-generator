@@ -17,6 +17,7 @@ const FieldInput = ({ label, id, name, htmlFor, placeholder }) => {
           placeholder={placeholder}
           className="p-2 text-lg border-2 rounded-md"
           required
+          autocomplete="false"
         />
         <ErrorMessage
           name={name}

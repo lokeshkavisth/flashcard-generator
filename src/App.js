@@ -1,5 +1,5 @@
-import Navbar from "./components/Navbar";
-import Container from "./containers/Container";
+import Navbar from "./components/ui/navigation/Navbar";
+import Container from "./layouts/containers/Container";
 
 function App() {
   return (

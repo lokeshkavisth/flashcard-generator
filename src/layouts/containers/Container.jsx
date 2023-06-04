@@ -1,8 +1,8 @@
 //  Wrapper for all our components
 
 import React from "react";
-import SubNav from "../components/SubNav";
-import Routes from "../routes/routes";
+import SubNav from "../../components/ui/navigation/SubNav";
+import Routes from "../../routes/routes";
 
 const Container = () => {
   return (

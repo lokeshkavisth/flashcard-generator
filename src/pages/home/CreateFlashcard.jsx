@@ -1,14 +1,14 @@
 // page for creating flashcards
 
 import React, { useState } from "react";
-import CreateGroup from "../components/CreateGroup";
-import CreateTerm from "../components/CreateTerm";
+import CreateGroup from "../../components/CreateGroup";
+import CreateTerm from "../../components/CreateTerm";
 import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { createFlashcard } from "../redux/actions/actions";
-import Button from "../components/Button";
-import { flashcardSchema } from "../schema/validation";
-import Toast from "../components/Toast";
+import { createFlashcard } from "../../redux/actions/actions";
+import Button from "../../components/ui/button/Button";
+import { flashcardSchema } from "../../schema/validation";
+import Toast from "../../components/ui/toast/Toast";
 
 const CreateFlashcard = () => {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const CreateFlashcard = () => {
       validateOnMount
     >
       {({ values, isValid, setFieldValue, isSubmitting }) => (
-        <Form>
+        <Form autoComplete="false">
           <section className="mb-10 flex flex-col gap-10">
             {/* toast component for let user know that their flashcard is created */}
             {toast && (

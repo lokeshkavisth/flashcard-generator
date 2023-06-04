@@ -2,8 +2,8 @@ import { lazy } from "react";
 
 // added react lazy here so we can divide our code or bundle size into smaller chunks and while loading the page we can load most important chunk first and after that all other chunks lazily loaded.
 
-const NotFound = lazy(() => import("../components/NotFound"));
-const CreateFlashcard = lazy(() => import("../pages/CreateFlashcard"));
+const NotFound = lazy(() => import("../pages/errors/NotFound"));
+const CreateFlashcard = lazy(() => import("../pages/home/CreateFlashcard"));
 const FlashcardDetails = lazy(() => import("../pages/FlashcardDetails"));
 const MyFlashcard = lazy(() => import("../pages/MyFlashcard"));
 
