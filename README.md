@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="./src/assets/app_logo.png"><img src="./src/assets/logo.webp" alt="Flashcard-generator" width="200"></a>
+  <a href="./src/assets/app_logo.png"><img src="./src/assets/logo.png" alt="Flashcard-generator" width="200"></a>
   <br>
   Flashcard-generator
   <br>
@@ -11,7 +11,7 @@
 ---
 
 <h2 align='center'>
-<a href="https://www.paypal.me/lokeshkavisth">
+<a href="https://flashcardify.netlify.app/">
     Demo
   </a>
 </h2>
