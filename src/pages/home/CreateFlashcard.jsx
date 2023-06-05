@@ -75,10 +75,11 @@ const CreateFlashcard = () => {
           <div className="mx-auto text-center">
             {/* button for submiting the flashcard */}
             <Button
-              disabled={isSubmitting && !isValid && !dirty}
+              data-testid="submit-form"
+              disabled={!(isValid && dirty)}
               type="submit"
               btnclass={`font-semibold rounded-md text-white text-xl px-14 py-4 ${
-                !isValid ? "bg-red-200 pointer-events-none " : "bg-red-600"
+                !isValid ? "bg-red-200" : "bg-red-600"
               }`}
               text={"Create Flashcard"}
             />

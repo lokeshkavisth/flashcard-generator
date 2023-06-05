@@ -28,11 +28,14 @@ Flashcard Generator is a web application that allows users to create, manage, an
 
 - [Introduction](#introduction)
 - [Features](#features)
+- [Tech Stack](#tech-stack)
 - [Feedback](#feedback)
 - [Contributors](#contributors)
 - [Build Process](#build-process)
 - [Support](#support)
 - [License](#license)
+- [Acknowledgements](#acknowledgements)
+- [Contact](#contact)
 
 ## Introduction
 
@@ -44,16 +47,23 @@ Flashcard-generator is a powerful flashcard generator app designed to supercharg
 
 A few of the things you can do with GitPoint:
 
-- Create two or more terms at the same time
-- Your Data in your hands [ it uses your browser localStorage to save your flashcard data ]
-- Create and delete flashcard or even a single term
-- Upload and delete images
-- Fully responsive and beginner friendly UI/UX
 - **Image Management:** Easily upload, delete, and edit images for your flashcards to add visual elements.
+- **Responsive UI:** Fully responsive and beginner friendly UI/UX.
 - **Group and Term Creation:** Organize your flashcards into groups and create multiple terms within each group for efficient management.
-- **Bulk Creation:** Save time by creating multiple flashcards simultaneously.
+- **Bulk Creation:** Save time by creating multiple flashcard terms simultaneously.
 - **Local Storage:** Access your flashcards even offline, thanks to browser local storage integration.
 - **Download, Print, and Share:** Export flashcards as files, print them for offline studying, or share them with others through various channels.
+
+## Tech Stack
+
+Flashcard Generator is built using the following technologies:
+
+- **React:** JavaScript library for building user interfaces.
+- **Tailwind CSS:** Utility-first CSS framework for rapid UI development.
+- **Redux:** Predictable state management library for managing application state.
+- **Formik:** Form library for simplified form management and validation.
+- **Yup:** JavaScript schema validation library for form validation.
+- **React Icons:** Library for including popular icon sets as React components.
 
 ## Feedback
 
@@ -63,7 +73,7 @@ If there's anything you'd like to chat about, please feel free to join our [Disc
 
 ## Contributors
 
-This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification and is brought to you by these [awesome contributors](./CONTRIBUTORS.md).
+This project follows the [all-contributors](https://github.com/lokeshkavisth/flashcard-generator) specification and is brought to you by these [awesome contributors](./CONTRIBUTORS.md).
 
 ## Build Process
 
@@ -85,16 +95,18 @@ $ npm start
 
 ## Support
 
-<a href="https://www.buymeacoffee.com/5Zn8Xh3l9" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
-
-<p>Or</p>
-
-<a href="https://www.patreon.com/amitmerchant">
-	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
+[paypal](https://paypal.me/lokeshkavisth)
 
 ## License
 
 Distributed under the MIT License. See [LICENSE.txt](./LICENSE.txt) for more information.
+
+## Acknowledgements
+
+We would like to thank the contributors to this project for their valuable contributions.
+
+## Contact
+
+For any inquiries or support, please contact us at [twitter](https://twitter.com/lokeshkavisth)
 
 ---

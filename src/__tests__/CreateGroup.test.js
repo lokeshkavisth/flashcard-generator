@@ -3,7 +3,22 @@
 
 // describe("CreateGroup", () => {
 //   test("Group input should be empty", () => {
-//     render(<CreateGroup />);
+//     const values = {
+//       id: "",
+//       groups: {
+//         group: "group",
+//         groupDesc: "testDesc",
+//         Profile: null,
+//       },
+//       terms: [
+//         {
+//           term: "",
+//           defination: "",
+//           image: null,
+//         },
+//       ],
+//     };
+//     render(<CreateGroup values={values.groups.Profile} />);
 //     const groupInputEl = screen.getByPlaceholderText(/Organic Chemistry/i);
 //     expect(groupInputEl.value).toBe("");
 //   });

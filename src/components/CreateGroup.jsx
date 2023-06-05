@@ -93,8 +93,8 @@ const CreateGroup = ({ values, setFieldValue }) => {
           as="textarea"
           name={`groups.groupDesc`}
           id="groupDescription"
-          maxLength="200"
-          placeholder="Write your description here ( max length is 200 words )"
+          maxLength="500"
+          placeholder="Write your description here ( max length is 500 words )"
           className="p-2 text-lg border-2 rounded-md h-36 resize-none"
         />
       </div>
