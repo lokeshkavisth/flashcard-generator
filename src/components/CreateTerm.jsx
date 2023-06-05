@@ -1,3 +1,5 @@
+// create term and defination page for the flashcard app
+
 import React, { useState } from "react";
 import { AiFillFileImage } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
@@ -11,6 +13,7 @@ const CreateTerm = ({ values, setFieldValue }) => {
   const [activeBtn, setActiveBtn] = useState(true);
   const [deleteIndex, setDeleteIndex] = useState(null);
 
+  // This function returns a `div` element that contains the create term and definition form.
   return (
     <div className={!values.groups.group && "opacity-50 pointer-events-none"}>
       <FieldArray
@@ -34,7 +37,6 @@ const CreateTerm = ({ values, setFieldValue }) => {
                     id={`Term-${item}`}
                     placeholder={"What is ISP?"}
                   />
-
                   {/* Enter Defination input */}
                   <FieldInput
                     name={`terms.${index}.defination`}
@@ -43,7 +45,6 @@ const CreateTerm = ({ values, setFieldValue }) => {
                     id={`Defination-${item}`}
                     placeholder={"An ISP (internet service provider) is..."}
                   />
-
                   {!item.image && (
                     <div>
                       {/* button for uploading term image */}
@@ -65,18 +66,18 @@ const CreateTerm = ({ values, setFieldValue }) => {
                                 id={`cardImage-${item}`}
                                 hidden
                                 accept="image/*"
-                                // taking the input data and extracting the image link from file object using FileReader
+                                // taking the input data from the user and extracting the image link from file object using FileReader
                                 onChange={(e) => {
                                   const file = e.target.files[0];
                                   const reader = new FileReader();
                                   reader.readAsDataURL(file);
                                   reader.onload = () => {
+                                    const imageUrl = reader.result;
                                     setFieldValue(
                                       deleteIndex == null
                                         ? `terms.${num}.image`
                                         : `terms.${deleteIndex}.image`,
-
-                                      reader.result
+                                      imageUrl
                                     );
                                     setDeleteIndex(null);
                                     setActiveBtn(false);
@@ -90,6 +91,9 @@ const CreateTerm = ({ values, setFieldValue }) => {
                       />
                     </div>
                   )}
+                  {/* This code renders a `div` element if the `item.image`
+                  variable is not `null`. The `div` element contains the term
+                  image, a trash button, and an edit button. */}
                   {item.image && (
                     <div className="flex items-center gap-5">
                       <div>
@@ -126,8 +130,10 @@ const CreateTerm = ({ values, setFieldValue }) => {
                       }
                     </div>
                   )}
-
-                  {!index == 0 && (
+                  {/* This code checks if the index variable is equal to 0. // If
+                  it is, then the code renders a button that allows the user to
+                  remove the term from the list. */}
+                  {Number(!index) === 0 && (
                     <div>
                       <Button
                         type="button"

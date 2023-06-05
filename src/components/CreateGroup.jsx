@@ -1,3 +1,5 @@
+// create group and group description page for the flashcard app
+
 import React from "react";
 import FieldInput from "./ui/input/FieldInput";
 import { Field } from "formik";
@@ -5,12 +7,15 @@ import { AiFillFileImage } from "react-icons/ai";
 import Button from "./ui/button/Button";
 
 const CreateGroup = ({ values, setFieldValue }) => {
+  // This function returns a `div` element that contains the create group and group description form.
   return (
     <div className="bg-white shadow-md md:p-10 p-5 rounded-md sm:p-5">
+      {/* This `div` element contains the group name input and the group image
+      upload button. */}
       <div
         className={`flex items-end gap-5 mb-5 sm:flex-row flex-col flex-wrap`}
       >
-        {/* enter group input */}
+        {/* Enter group input */}
         <FieldInput
           name={`groups.group`}
           id={"group"}
@@ -20,7 +25,7 @@ const CreateGroup = ({ values, setFieldValue }) => {
         />
 
         <div>
-          {/* button for uploading Group image */}
+          {/* Button for uploading Group image */}
           <Button
             type={"button"}
             btnclass={
@@ -76,8 +81,7 @@ const CreateGroup = ({ values, setFieldValue }) => {
           </>
         )}
       </div>
-
-      {/* Group description  */}
+      {/* Group description */}
       <div className="flex flex-col gap-2 relative">
         <label
           htmlFor="groupDescription"

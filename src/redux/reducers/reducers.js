@@ -1,34 +1,41 @@
 // retrieving data from the localStore
 const localStoreData = JSON.parse(localStorage.getItem("flashcards"));
+
+// This variable represents the initial state of the flashcard data.
+// If data is present in the local store, it will be retrieved and used as the initial state.
+// Otherwise, an empty array will be used as the initial state.
 const initState = {
-  // if data is there in localStorage then retrieve else push data in localStorage from redux
   flashcards: localStoreData ? localStoreData : [],
 };
 
-// redux reducer for manupilating flashcard data
+// This function is a reducer for manipulating flashcard data.
+// It takes the current state and an action as input, and returns the new state.
 export const flashCardData = (state = initState, { type, payload }) => {
   switch (type) {
-    // if action type ('CREATE_FLASHCARD') matches then push new data into state
+    // If the action type is `CREATE_FLASHCARD`, a new flashcard is created and added to the state.
     case "CREATE_FLASHCARD":
       return {
         ...state,
         flashcards: [...state.flashcards, payload],
       };
 
-    // if action type ('DELETE_FLASHCARD') matches then delete data and update the state with remain data
+    // If the action type is `DELETE_FLASHCARD`, a flashcard is deleted from the state.
     case "DELETE_FLASHCARD":
-      // filter method for checking if id is same or not
+      // The `filter()` method is used to find all flashcards in the state whose `id` property does not match the `payload`.
+      // The remaining flashcards are then used to update the state.
       const remainFlashcards = state.flashcards.filter(
         (card) => card.id !== payload
       );
 
-      // adding the remain data in localStorage
+      // The updated state is then returned.
       localStorage.setItem("flashcards", JSON.stringify(remainFlashcards));
 
       return {
         ...state,
         flashcards: remainFlashcards,
       };
+
+    // If the action type does not match any of the cases, the current state is returned.
     default:
       return state;
   }

@@ -14,6 +14,8 @@ const CreateFlashcard = () => {
   const dispatch = useDispatch();
   const [toast, setToast] = useState(false);
   const { flashcards } = useSelector((state) => state.flashCardData);
+
+  // If flashcards exist in local storage, set them to the state
   if (flashcards.length > 0)
     localStorage.setItem("flashcards", JSON.stringify(flashcards));
 
@@ -39,20 +41,23 @@ const CreateFlashcard = () => {
       onSubmit={(values, action) => {
         values.id = Date.now();
         action.resetForm();
+
+        // Dispatch the createFlashcard action with the form data
         dispatch(createFlashcard(values));
 
         setToast(true);
 
+        // After 2 seconds, set the toast variable to false to hide the toast message
         setTimeout(() => {
           setToast(false);
         }, 2000);
       }}
       validateOnMount
     >
-      {({ values, isValid, setFieldValue, isSubmitting }) => (
+      {({ values, isValid, setFieldValue, isSubmitting, dirty }) => (
         <Form autoComplete="false">
           <section className="mb-10 flex flex-col gap-10">
-            {/* toast component for let user know that their flashcard is created */}
+            {/* toast component for letting the user know that their flashcard is created */}
             {toast && (
               <Toast
                 fn={() => setToast(false)}
@@ -60,20 +65,20 @@ const CreateFlashcard = () => {
               />
             )}
 
-            {/* Create term component */}
+            {/* Create Group component */}
             <CreateGroup values={values} setFieldValue={setFieldValue} />
 
-            {/* Create term component */}
+            {/* Create Term component */}
             <CreateTerm setFieldValue={setFieldValue} values={values} />
           </section>
 
           <div className="mx-auto text-center">
             {/* button for submiting the flashcard */}
             <Button
-              disabled={isSubmitting}
+              disabled={isSubmitting && !isValid && !dirty}
               type="submit"
               btnclass={`font-semibold rounded-md text-white text-xl px-14 py-4 ${
-                !isValid ? "bg-red-200" : "bg-red-600"
+                !isValid ? "bg-red-200 pointer-events-none " : "bg-red-600"
               }`}
               text={"Create Flashcard"}
             />

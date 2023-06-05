@@ -17,11 +17,12 @@ const FieldInput = ({ label, id, name, htmlFor, placeholder }) => {
           placeholder={placeholder}
           className="p-2 text-lg border-2 rounded-md"
           required
-          autocomplete="false"
+          autoComplete="false"
         />
         <ErrorMessage
           name={name}
           component="span"
+          data-testid="error-msg"
           className="absolute top-12 left-0 text-red-600"
         />
       </div>

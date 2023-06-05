@@ -1,19 +1,16 @@
 <h1 align="center">
   <br>
-  <a href="./src/assets/app_logo.png"><img src="./src/assets/logo.webp" alt="Flashcard-generator" width="200"></a>
-  <br>
-  Flashcard-generator
-  <br>
+
+![logo](./src/assets/logo.png)
+
+Flashcard Generator
+
 </h1>
 
-<h4 align="center">Build an Professional Resume in Minutes with <a href="http://github.com" target="_blank">Resume Builder</a>.</h4>
-
----
+Flashcard Generator is a web application that allows users to create, manage, and share custom flashcards. It provides an intuitive interface and a comprehensive set of features to enhance the learning process.
 
 <h2 align='center'>
-<a href="https://www.paypal.me/lokeshkavisth">
-    Demo
-  </a>
+<a href='https://flashcardify.netlify.app/'>Demo</a>
 </h2>
 
 <p align="center">
@@ -52,8 +49,11 @@ A few of the things you can do with GitPoint:
 - Create and delete flashcard or even a single term
 - Upload and delete images
 - Fully responsive and beginner friendly UI/UX
-- Download and print a specific term or your whole flashcard
-- Direct share on social media or you can copy the share link
+- **Image Management:** Easily upload, delete, and edit images for your flashcards to add visual elements.
+- **Group and Term Creation:** Organize your flashcards into groups and create multiple terms within each group for efficient management.
+- **Bulk Creation:** Save time by creating multiple flashcards simultaneously.
+- **Local Storage:** Access your flashcards even offline, thanks to browser local storage integration.
+- **Download, Print, and Share:** Export flashcards as files, print them for offline studying, or share them with others through various channels.
 
 ## Feedback
 
