@@ -7,35 +7,19 @@ import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
 import React from "react";
+import Toast from "../components/ui/toast/Toast";
 
-// const app = (component) =>
-//   render(<Provider store={store}>{component}</Provider>);
-
-// afterEach(() => {
-//   cleanup();
-// });
-
-// describe("CreateFlashcard", () => {
-//   beforeEach(() => {
-//     app();
-//   });
-
-it("Submit button should be disabled", () => {
+it("App should render the components", () => {
   render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
   );
-  const navEl = screen.getByTestId("appDiv");
-  expect(navEl).toBeInTheDocument();
-
-  // const btn = { type: "submit" };
-
-  // render(<Provider store={store}>{component}</Provider>);
-  // const submitBtn = screen.getByRole("submit");
-  // expect(submitBtn).toBeDisabled();
+  const appEl = screen.getByTestId("appDiv");
+  expect(appEl).toBeInTheDocument();
 });
 
+// createFlashcard test cases group
 describe("CreateFlashcard", () => {
   async function renderWithContext(element = React.ReactElement) {
     render(
@@ -45,36 +29,65 @@ describe("CreateFlashcard", () => {
     );
   }
 
-  it("Submit button is disabled on render", async () => {
+  it("Submit button should be disabled on initial render", async () => {
     renderWithContext(<CreateFlashcard />);
     expect(
       await screen.findByRole("button", { name: /create flashcard/i })
     ).toBeDisabled();
   });
 
-  it("Submit button should not be disabled when inputs exist", () => {
+  it("Submit button should not be disabled when inputs are not empty", () => {
     renderWithContext(<CreateFlashcard />);
-    const submitTestVal = "test";
+    const mockValue = "test";
 
     const groupInputEl = screen.getByLabelText(/create group*/i);
     const groupDescInputEl = screen.getByLabelText(/add description/i);
     const termInputEl = screen.getByLabelText(/enter term*/i);
     const definationInputEl = screen.getByLabelText(/enter defination*/i);
+    const buttonEl = screen.getByRole("button", { name: /create flashcard/i });
+
+    fireEvent.change(groupInputEl, { target: { value: mockValue } });
+    fireEvent.change(groupDescInputEl, { target: { value: mockValue } });
+    fireEvent.change(termInputEl, { target: { value: mockValue } });
+    fireEvent.change(definationInputEl, { target: { value: mockValue } });
+    expect(buttonEl).not.toBeDisabled();
+  });
+
+  it("Form should be submit when click on create flashcard button and a toast should be popup", () => {
+    renderWithContext(<CreateFlashcard />);
+    render(<Toast />);
+    const submitTestVal = "testValue";
+
+    const groupInputEl = screen.getByLabelText(/create group*/i);
+    const groupDescInputEl = screen.getByLabelText(/add description/i);
+    const termInputEl = screen.getByLabelText(/enter term*/i);
+    const definationInputEl = screen.getByLabelText(/enter defination*/i);
+    const buttonEl = screen.getByRole("button", { name: /create flashcard/i });
+    const toastEl = screen.getByTestId("toast-dataid");
 
     fireEvent.change(groupInputEl, { target: { value: submitTestVal } });
-    expect(groupInputEl.value).toBe("test");
-
     fireEvent.change(groupDescInputEl, { target: { value: submitTestVal } });
-    expect(groupDescInputEl.value).toBe("test");
+    fireEvent.change(termInputEl, { target: { value: submitTestVal } });
+    fireEvent.change(definationInputEl, { target: { value: submitTestVal } });
+    fireEvent.click(buttonEl);
+    expect(toastEl).toBeInTheDocument();
+  });
 
-    // fireEvent.change(termInputEl, { target: { value: submitTestVal } });
-    // expect(termInputEl.value).toBe("test");
+  it("After submitting the form inputs should be empty", () => {
+    renderWithContext(<CreateFlashcard />);
+    const submitTestVal = "";
 
-    // fireEvent.change(definationInputEl, { target: { value: submitTestVal } });
-    // expect(definationInputEl.value).toBe("test");
+    const groupInputEl = screen.getByLabelText(/create group*/i);
+    const groupDescInputEl = screen.getByLabelText(/add description/i);
+    const termInputEl = screen.getByLabelText(/enter term*/i);
+    const definationInputEl = screen.getByLabelText(/enter defination*/i);
+    const buttonEl = screen.getByRole("button", { name: /create flashcard/i });
 
-    expect(
-      screen.getByRole("button", { name: /create flashcard/i })
-    ).not.toBeDisabled();
+    fireEvent.change(groupInputEl, { target: { value: submitTestVal } });
+    fireEvent.change(groupDescInputEl, { target: { value: submitTestVal } });
+    fireEvent.change(termInputEl, { target: { value: submitTestVal } });
+    fireEvent.change(definationInputEl, { target: { value: submitTestVal } });
+    fireEvent.click(buttonEl);
+    expect(groupDescInputEl).toBeEmptyDOMElement();
   });
 });

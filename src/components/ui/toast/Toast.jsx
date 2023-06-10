@@ -4,6 +4,7 @@ import { BsCheckCircle } from "react-icons/bs";
 const Toast = ({ fn, toastClass }) => {
   return (
     <div
+      data-testid="toast-dataid"
       className={`p-5 space-y-4 bg-blue-600 w-72 sm:w-96 rounded-md text-white fixed top-2 ${toastClass} left-1/2 transform -translate-x-1/2 transition-all duration-1000 ease-in-out z-50`}
     >
       <div>

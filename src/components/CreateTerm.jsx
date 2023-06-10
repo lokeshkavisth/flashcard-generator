@@ -34,7 +34,7 @@ const CreateTerm = ({ values, setFieldValue }) => {
                     name={`terms.${index}.term`}
                     htmlFor={`Term${item}`}
                     label={"Enter Term"}
-                    id={`Term-${item}`}
+                    id={`Term${item}`}
                     placeholder={"What is ISP?"}
                   />
                   {/* Enter Defination input */}
@@ -42,7 +42,7 @@ const CreateTerm = ({ values, setFieldValue }) => {
                     name={`terms.${index}.defination`}
                     htmlFor={`Defination${item}`}
                     label={"Enter Defination"}
-                    id={`Defination-${item}`}
+                    id={`Defination${item}`}
                     placeholder={"An ISP (internet service provider) is..."}
                   />
                   {!item.image && (
