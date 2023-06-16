@@ -69,6 +69,7 @@ const CreateGroup = ({ values, setFieldValue }) => {
                 src={values.groups.Profile}
                 alt="card_profile"
                 loading="lazy"
+                data-testid=""
               />
               <Button
                 type="button"

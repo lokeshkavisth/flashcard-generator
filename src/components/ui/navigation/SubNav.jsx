@@ -28,7 +28,7 @@ const SubNav = () => {
                 <NavLink
                   to={path}
                   className={
-                    pathname == path &&
+                    pathname === path &&
                     "border-b-4 pb-2 text-red-500 border-red-500"
                   }
                 >

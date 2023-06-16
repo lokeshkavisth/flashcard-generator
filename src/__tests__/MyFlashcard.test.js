@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import MyFlashcard from "../pages/MyFlashcard";
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import store from "../store";
-import { BrowserRouter } from "react-router-dom";
 import React from "react";
 
 describe("MyFlashcard", () => {
@@ -14,37 +13,40 @@ describe("MyFlashcard", () => {
   //     );
   //   }
 
+  //   const initialVal = ;
+  // const stateSetter = jest.fn();
+
   it.only("Card should be render", () => {
-    // const initialVal = {
+    // const [myState, setMyState] = React.useState(null);
+    // setMyState({
     //   flashCardData: {
     //     flashcards: [
     //       {
-    //         id: 1686378180159,
+    //         id: 0,
     //         groups: {
-    //           group: "JavaScript Developer",
-    //           groupDesc: "sdfsdfsdfsf",
+    //           group: "",
+    //           groupDesc: "",
     //           Profile: "",
     //         },
     //         terms: [
     //           {
-    //             term: "fffffffffffffffffffffffffff",
-    //             defination:
-    //               "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    //             term: "",
+    //             defination: "",
     //             image: "",
     //           },
     //         ],
     //       },
     //     ],
     //   },
-    // };
+    // });
 
     render(
-      <Provider>
+      <Provider store={store}>
         <MyFlashcard />,
       </Provider>
     );
   });
 
-  const cardContainer = screen.getByText(/You don't have any flashcards/i);
-  expect(cardContainer).toBeInTheDocument();
+  const cardContainer = screen.getByTestId("go-to-home");
+  expect(cardContainer).toHaveTextContent(/create flashcard/i);
 });

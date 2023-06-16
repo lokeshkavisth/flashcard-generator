@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import CreateFlashcard from "../pages/home/CreateFlashcard";
 import { Provider } from "react-redux";
 import { store } from "../store";
@@ -20,6 +20,7 @@ it("App should render the components", () => {
 });
 
 // createFlashcard test cases group
+// const formEl = () => {};
 describe("CreateFlashcard", () => {
   async function renderWithContext(element = React.ReactElement) {
     render(
@@ -75,7 +76,7 @@ describe("CreateFlashcard", () => {
 
   it("After submitting the form inputs should be empty", () => {
     renderWithContext(<CreateFlashcard />);
-    const submitTestVal = "";
+    const submitTestVal = "dsfsd";
 
     const groupInputEl = screen.getByLabelText(/create group*/i);
     const groupDescInputEl = screen.getByLabelText(/add description/i);
@@ -88,6 +89,26 @@ describe("CreateFlashcard", () => {
     fireEvent.change(termInputEl, { target: { value: submitTestVal } });
     fireEvent.change(definationInputEl, { target: { value: submitTestVal } });
     fireEvent.click(buttonEl);
-    expect(groupDescInputEl).toBeEmptyDOMElement();
+    // expect(groupDescInputEl).toBeEmptyDOMElement();
+    expect(groupInputEl.length).toBe(0);
   });
+
+  // it("Upload image should be render", async () => {
+  //   renderWithContext(<CreateFlashcard />);
+  //   let file;
+
+  //   beforeEach(() => {
+  //     file = new File(["(⌐□_□)"], "chucknorris.png", { type: "image/png" });
+  //   });
+
+  //   const imageInputEl = screen.getByLabelText(/upload image/i);
+
+  //   const fileInput = getByLabelText("file-input-label");
+  //   userEvent.upload(fileInput, testFile);
+
+  //   let image = document.getElementById("photo-uploader");
+  //   // check if the file is there
+  //   expect(image.files[0].name).toBe("chucknorris.png");
+  //   expect(image.files.length).toBe(1);
+  // });
 });

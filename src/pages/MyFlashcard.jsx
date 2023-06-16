@@ -7,15 +7,18 @@ import { useSelector } from "react-redux";
 
 const MyFlashcard = () => {
   const { flashcards } = useSelector((state) => state.flashCardData);
-  const data = useSelector((state) => state);
-  console.log(data);
   return (
-    <div className="flex gap-3 flex-wrap mx-auto " data-testid="my-cards">
+    <div
+      role="main"
+      className="flex gap-3 flex-wrap mx-auto"
+      data-testid="my-cards"
+    >
       {/* if flashcard state data is not empty then shows cards else shows an message */}
       {flashcards.length === 0 ? (
         <div className="flex flex-col items-center justify-center gap-4 text-center mx-auto">
           <p className="text-black text-2xl">You don't have any flashcards</p>
           <NavLink
+            data-testid="go-to-home"
             to={"/"}
             className={
               "px-6 py-2 bg-red-500 rounded-md text-xl font-semibold text-white hover:bg-red-700 transition-all"
